@@ -12,13 +12,16 @@ def net_profit(rev,TC):
     return rev - TC
 
 def break_even_price(TC, cargo_quantity):
-    return (TC)/cargo_quantity
+    if TC == 0 or cargo_quantity == 0:
+        return 0
+    else:
+        return (TC)/cargo_quantity
     
 def profit_margin(NP, rev):
     return (NP/rev)*100
 
 def profit_percentage(NP,TC):
-    if TC == 0:
+    if TC == 0 or NP == 0:
         return 0 
     else: 
         return (NP/(TC))
