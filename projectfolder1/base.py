@@ -43,6 +43,26 @@ def get_float(prompt, allow_zero = True):
             print("value cannot be zero")
             continue    
         return value 
+    
+#calculate trade main function (returns a dictionary of all the calculated values)
+def calculate_trade(cargo_quantity, purchase_price, selling_price, sea_freight_costs, insurance, SG_PSA_port, additional_costs):
+    rev = revenue(cargo_quantity, selling_price)
+    PC = purchase_costs(cargo_quantity, purchase_price)
+    TC = total_cost(PC,sea_freight_costs,insurance, SG_PSA_port, additional_costs)
+    NP = net_profit(rev,TC)
+    BEP = break_even_price(TC, cargo_quantity)
+    PM = profit_margin(NP, rev)
+    PP = profit_percentage(NP, TC)
+    
+    return {
+        "revenue": rev,
+        "purchase_cost": PC,
+        "total_cost": TC,
+        "net_profit": NP,
+        "break_even_price": BEP,
+        "profit_margin": PM,
+        "profit_percentage": PP
+    }
 
 #main programme + input validation 
 def main():

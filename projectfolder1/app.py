@@ -1,0 +1,27 @@
+import streamlit as st
+from base import calculate_trade
+
+st.title("Trade Calculator")
+qty = st.number_input("Enter cargo quantity:", min_value=0.0,value =0.0, step=1.0)
+st.write("Cargo quantity:", qty)
+pp = st.number_input("Enter purchase price:", min_value=0.0,value =0.0, step=1.0)
+st.write("Purchase price:", pp)
+sp = st.number_input("enter selling price:", min_value =0.0, value =0.0, step=1.0)
+st.write("Selling price:", sp)
+sfc = st.number_input("Enter sea freight costs:", min_value=0.0,value =0.0, step=1.0)
+st.write("Sea freight costs:", sfc) 
+insurance = st.number_input("enter insurance costs:", min_value=0.0,value =0.0, step=1.0)
+st.write("Insurance costs:", insurance) 
+port_costs = st.number_input("Enter port costs:", min_value=0.0,value =0.0, step=1.0)
+st.write("Port costs:", port_costs) 
+additional_costs = st.number_input("Enter additional costs:", min_value=0.0,value =0.0, step=1.0)
+st.write("Additional costs:", additional_costs) 
+
+result = calculate_trade(qty, pp, sp, sfc, insurance, port_costs, additional_costs)
+st.write("Revenue:", result["revenue"])
+st.write("Purchase Cost:", result["purchase_cost"]) 
+st.write("Total Cost:", result["total_cost"])
+st.write("Net Profit:", result["net_profit"])   
+st.write("Break Even Price:", result["break_even_price"])
+st.write("Profit Margin:", result["profit_margin"])
+st.write("Profit Percentage:", result["profit_percentage"])
