@@ -9,12 +9,14 @@ is profitable, including shipping and Singapore PSA port costs.
 - Break-even price per tonne
 - Profit margin (% of revenue) and profit percentage (% return on cost)
 
-#run it 
-git clone https://github.com/cozadlim/<commodity-trading-calculator>.git
-cd <commodity-trading-calculator>/projectfolder1
+# Run it
+```bash
+git clone https://github.com/cozadlim/commodity-trading-calculator.git
+cd commodity-trading-calculator/projectfolder1
 python base.py
+```
 
-## Example run
+# Example run
 ```
 cargo quantity(tonnes): 10
 purchase price(per tonne): 5
@@ -30,8 +32,10 @@ break even price/tonne: 7.00
 profit margin: 12.50
 profit percentage: 14.3%
 ```
-run the tests
-cd <commodity-trading-calculator>/projectfolder1
+# Run the tests
+```bash
+cd commodity-trading-calculator/projectfolder1
 pip install pytest
 python -m pytest -v
+```
 
