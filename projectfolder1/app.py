@@ -1,9 +1,30 @@
 import streamlit as st
 from base import calculate_trade, revenue, total_cost, net_profit
+from fx import fetch_usd_to_sgd_rate, USD_to_SGD, SGD_to_USD
 
 st.set_page_config(page_title = "Commodity Trading Calculator", layout = "wide")
 st.title("Trade Calculator")
 st.caption("commmodity trading calculator including freight, insurance and singapore PSA port cost. Easy aplication to see how much youve made.")
+
+@st.cache_data(ttl=3600)
+def get_exchange_rate():
+    return fetch_usd_to_sgd_rate()
+
+with st.sidebar.expander("Currency converter (SGD ⇄ USD)"):
+    try:
+        usd_to_sgd_rate = fetch_usd_to_sgd_rate()
+        st.caption(f"Current USD to SGD exchange rate: {usd_to_sgd_rate:.4f}")
+    except Exception:
+        usd_to_sgd_rate = None
+        st.warning("Unable to fetch exchange rate. Please check your internet connection or enter one manually.")
+    
+    rate = st.number_input("Exchange rate (USD to SGD):", min_value=0.0, value=usd_to_sgd_rate if usd_to_sgd_rate else 1.30, step=0.001)
+    direction = st.radio("Conversion direction:", ("USD to SGD", "SGD to USD"))
+    amount = st.number_input("Amount:", min_value=0.0, value=1.0)
+    if direction == "USD to SGD":
+        st.write(f"{amount} USD is equal to {USD_to_SGD(amount, rate):.2f} SGD")
+    else:
+        st.write(f"{amount} SGD is equal to {SGD_to_USD(amount, rate):.2f} USD")
 
 with st.sidebar:
     st.header("TRADE")
