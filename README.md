@@ -1,6 +1,9 @@
 # Commodity Trading Calculator
-A command-line tool that works out whether a physical commodity trade
+A web app that works out whether a physical commodity trade
 is profitable, including shipping and Singapore PSA port costs.
+
+**[try the live app!](https://commodity-trading-calculator-fiy5bbbwyqgsduifdlwqzn.streamlit.app/)**
+<img width="2827" height="1516" alt="screenshot of the calculator web app" src="https://github.com/user-attachments/assets/9fdfebb3-0282-428d-9c50-821569bf8d8b" />
 
 # What it calculates
 - Revenue and purchase cost
@@ -8,12 +11,15 @@ is profitable, including shipping and Singapore PSA port costs.
 - Net profit
 - Break-even price per tonne
 - Profit margin (% of revenue) and profit percentage (% return on cost)
+- USD/SGD converter using the latest daily rate, with a manual override
 
 # Run it
 ```bash
 git clone https://github.com/cozadlim/commodity-trading-calculator.git
-cd commodity-trading-calculator/projectfolder1
-python base.py
+cd commodity-trading-calculator
+python -m pip install -r requirements.txt
+cd projectfolder1
+python -m streamlit run app.py
 ```
 
 # Example run
@@ -38,4 +44,6 @@ cd commodity-trading-calculator/projectfolder1
 pip install pytest
 python -m pytest -v
 ```
-
+## Notes
+- All prices in the calculator are in USD; use the sidebar converter for SGD quotes.
+- Exchange rates come from the Frankfurter API and are daily reference rates, not live market prices.
